@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista Jugadores</h1>
+    <table>
+        <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Altura</th>
+        <th>Posicion</th>
+        <th>Ver</th>
+        </tr>
+        <% for (var i = 0; i < database.length; i++) { %>
+        <tr>
+        <td><%= database[i].id %></td>
+        <td><%= database[i].first_name %></td>
+        <td><%= database[i].last_name %></td>
+        <td><%= database[i].height_feet %></td>
+        <td><%= database[i].position %></td>
+        <td>  <a href="/view?id=<%= database[i].id %>">Detalle</a> </td>
+        </tr>
+        <% } %>
+        </table>
+
+</body>
+</html>
