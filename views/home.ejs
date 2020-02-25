@@ -1,32 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <STYLE TYPE="text/css">
+        .titulo {
+            position: relative;
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 12px;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        th {
+            font-size: 13px;
+            font-weight: normal;
+            padding: 8px;
+            background: #b9c9fe;
+            border-top: 4px solid #aabcfe;
+            border-bottom: 1px solid #fff;
+            color: #039;
+        }
+
+        td {
+            padding: 8px;
+            background: #e8edff;
+            border-bottom: 1px solid #fff;
+            color: #669;
+            border-top: 1px solid transparent;
+        }
+
+        tr:hover td {
+            background: #d0dafd;
+            color: #339;
+        }
+
+        caption,
+        td,
+        th {
+            padding: 0.1em;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #999;
+            width: 25%;
+        }
+
+        td,
+        th {
+            background: #fff;
+            color: #000;
+        }
+
+        .link {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 30px;
+            border:1px solid  #039;;
+
+        }
+
+        label {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            width: 100%;
+            font-weight: bold;
+        }
+    </STYLE>
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Lista Jugadores</h1>
+    <form action="/action_page.php">
+        <label for="fname">Id:</label>
+        <input type="text" id="fname" name="fname">
+        <label for="fname">Nombre:</label>
+        <input type="text" id="fname" name="fname">
+        <label for="lname">Apellido:</label>
+        <input type="text" id="lname" name="lname"><br><br>
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <h1 class="titulo">Lista Jugadores</h1>
     <table>
         <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Altura</th>
-        <th>Posicion</th>
-        <th>Ver</th>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Altura</th>
+            <th>Posicion</th>
+            <th>Ver</th>
         </tr>
         <% for (var i = 0; i < database.length; i++) { %>
         <tr>
-        <td><%= database[i].id %></td>
-        <td><%= database[i].first_name %></td>
-        <td><%= database[i].last_name %></td>
-        <td><%= database[i].height_feet %></td>
-        <td><%= database[i].position %></td>
-        <td>  <a href="/view?id=<%= database[i].id %>">Detalle</a> </td>
+            <td><%= database[i].id %></td>
+            <td><%= database[i].first_name %></td>
+            <td><%= database[i].last_name %></td>
+            <td><%= database[i].height_feet %></td>
+            <td><%= database[i].position %></td>
+            <td> <a href="/view?id=<%= database[i].id %>">Detalle</a> </td>
+            <td> <a href="/edit?id=<%= database[i].id %>">Editar</a> </td>
         </tr>
         <% } %>
-        </table>
-<a href="/create">Crear Jugador</a>
+    </table>
+    <a class="link" href="/create">Crear Jugador</a>
 </body>
+
 </html>

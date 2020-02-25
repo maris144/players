@@ -13,7 +13,8 @@
         label {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             text-align: center;
-            width: 100%
+            width: 100%;
+
         }
 
         input {
@@ -29,23 +30,24 @@
             border-radius: 10px;
             margin: auto;
             background-color: #ccc;
+        }
     </STYLE>
-    <title>Crear</title>
+    <title>Editar</title>
 </head>
 
 <body>
-    <form action="/create" method="post" class="form">
+    <form action="/edit" method="post" class="form">
         <label for="id">Id:</label>
-        <input type="text" id="id" name="id" required><br><br>
+        <input type="text" id="id" name="id" required readonly value="<%= player.id %>"><br><br>
         <label for="first_name">Nombre:</label>
-        <input type="text" id="first_name" name="first_name" required><br><br>
+        <input type="text" id="first_name" name="first_name" required value="<%= player.first_name %>"><br><br>
         <label for="last_name">Apellido:</label>
-        <input type="text" id="last_name" name="last_name" required><br><br>
+        <input type="text" id="last_name" name="last_name" required value=" <%= player.last_name %>"><br><br>
         <label for="height_feet">Altura:</label>
-        <input type="text" id="height_feet" name="height_feet" required><br><br>
+        <input type="text" id="height_feet" name="height_feet" required value="<%= player.height_feet %>"><br><br>
         <label for="position">Posición:</label>
-        <input type="text" id="position" name="position" required><br><br>
-        <input type="submit" value="Crear">
+        <input type="text" id="position" name="position" required value="<%= player.position %>"><br><br>
+        <input type="submit" value="Editar">
     </form>
 </body>
 

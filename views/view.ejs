@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <STYLE TYPE="text/css">
+        label {
+
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+
+
+            margin: auto;
+            background-color: #ccc;
+        }
+
+        .link {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+        }
+
+        body {
+            font-size: 20px;
+        }
+    </STYLE>
     <title>Vista Jugador</title>
 </head>
+
 <body>
-   <%= player.first_name %>
-    <a href="/delete?id=<%= player.id %>">Eliminar</a> 
+    <label for="id">Id:</label>
+    <%= player.id %>
+    <hr>
+    <label for="first_name">First name:</label>
+    <%= player.first_name %>
+    <hr>
+    <label for="last_name">last name:</label>
+    <%= player.last_name %>
+    <hr>
+    <label for="height_feet">Height Feet:</label>
+    <%= player.height_feet %>
+    <hr>
+    <label for="position">Position:</label>
+    <%= player.position %>
+    <hr>
+    <a class="link" href="/delete?id=<%= player.id %>">Eliminar</a>
 </body>
+
 </html>
