@@ -9,6 +9,17 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded());
 app.use(express.json());
 
+app.post("/filter", function(req, res) {
+  let id = req.body.id;
+  let first_name = req.body.first_name;
+  let last_name = req.body.last_name;
+  let query = (id?"id="+id:"")+(first_name?"first_name="+first_name:"")+(last_name?"last_name="+last_name:"");
+  query = query.length>0?"?"+query:query;
+  res.redirect("/home"+query);
+});
+
+
+
 app.get("/edit", function(req, res) {
   let id = req.query.id;
   var jsonPath = path.join(__dirname, "database", "players.json");
@@ -24,15 +35,15 @@ app.post("/edit", function(req, res) {
   let last_name = req.body.last_name;
   let height_feet = req.body.height_feet;
   let position = req.body.position;
-  
+
   var jsonPath = path.join(__dirname, "database", "players.json");
   var contents = fs.readFileSync(jsonPath);
   let database = JSON.parse(contents);
   let player = database.find(p => p.id == id);
-  player.first_name =first_name; 
-  player.last_name =last_name; 
-  player.height_feet =height_feet; 
-  player.position =position; 
+  player.first_name = first_name;
+  player.last_name = last_name;
+  player.height_feet = height_feet;
+  player.position = position;
 
   fs.writeFileSync(jsonPath, JSON.stringify(database));
   res.redirect("/home");
@@ -82,9 +93,22 @@ app.get("/delete", function(req, res) {
 });
 
 app.get("/home", function(req, res) {
+  let id = req.query.id;
+  let first_name = req.query.first_name;
+  let last_name = req.query.last_name;
+
   var jsonPath = path.join(__dirname, "database", "players.json");
   var contents = fs.readFileSync(jsonPath);
-  res.render("home", { database: JSON.parse(contents) });
+
+  let database = JSON.parse(contents);
+  database = database.filter(
+    p =>
+      p.id == (id ? id : p.id) &&
+      p.first_name.startsWith (first_name ? first_name : p.first_name) &&
+      p.last_name.startsWith (last_name ? last_name : p.last_name)
+  );
+  
+  res.render("home", { database: database });
 });
 
 app.get("/", function(req, res) {
